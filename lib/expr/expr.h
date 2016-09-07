@@ -26,7 +26,7 @@ extern "C" {
 #define _EXPR_H
 
 #include <ast.h>
-#include <inttypes.h>
+#include <stdint.h>
 
 #undef	RS	/* hp.pa <signal.h> grabs this!! */
 

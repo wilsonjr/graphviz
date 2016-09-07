@@ -43,7 +43,7 @@ extern "C" {
 #include <string.h>
 #endif
 
-#include <inttypes.h>
+#include <stdint.h>
 
 #include "types.h"
 #include "macros.h"

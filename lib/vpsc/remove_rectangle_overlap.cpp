@@ -17,6 +17,7 @@
 
 #include <iostream>
 #include <cassert>
+#include "remove_rectangle_overlap.h"
 #include "generate-constraints.h"
 #include "solve_VPSC.h"
 #include "variable.h"
@@ -45,7 +46,7 @@ double Rectangle::yBorder=0;
  *    x-positions - this corrects the case where rectangles were moved 
  *    too much in the first pass.
  */
-void removeRectangleOverlap(int n, Rectangle *rs[], double xBorder, double yBorder) {
+void removeRectangleOverlap(Rectangle *rs[], int n, double xBorder, double yBorder) {
 	assert(0 <= n);
 	try {
 	// The extra gap avoids numerical imprecision problems
@@ -57,6 +58,7 @@ void removeRectangleOverlap(int n, Rectangle *rs[], double xBorder, double yBord
 	}
 	Constraint **cs;
 	double *oldX = new double[n];
+	
 	int m=generateXConstraints(n,rs,vs,cs,true);
 	for(int i=0;i<n;i++) {
 		oldX[i]=vs[i]->desiredPosition;
@@ -109,9 +111,9 @@ void removeRectangleOverlap(int n, Rectangle *rs[], double xBorder, double yBord
 		delete vs[i];
 	}
 	delete [] vs;
-	for(int i = 0; i < m; ++i) {
+	/*for(int i = 0; i < m; ++i) {
 		delete cs[i];
-	}
+	}*/
 	delete [] cs;
 	} catch (char const *str) {
 		std::cerr<<str<<std::endl;
